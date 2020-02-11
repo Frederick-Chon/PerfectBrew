@@ -2,21 +2,52 @@
 
 import '../stylesheets/style.scss';
 
-import axios from 'axios';
+const app = document.getElementById('root');
 
-// Sample api call for testing
+const logo = document.createElement('img');
+logo.src = '/src/images/beer.svg';
+
+const h1 = document.createElement('h1');
+h1.textContent = `Perfect Brew`;
+
+const container = document.createElement('div');
+container.setAttribute('class', 'container');
+
+const search = document.createElement('div');
+search.setAttribute('class', 'search')
+
+const searchField = document.createElement('input');
+searchField.setAttribute('class', 'searchField');
+searchField.setAttribute('type', 'text');
+searchField.setAttribute('placeholder', 'Search for your favorite food pairings!');
+
+const searchBtn = document.createElement('button');
+searchBtn.setAttribute('class', 'searchBtn');
+searchBtn.setAttribute('type', 'submit');
+
+const searchBtnImg = document.createElement('img');
+searchBtnImg.setAttribute('class', 'searchBtnImg')
+searchBtnImg.src = '/src/images/search.svg';
 
 
-let doSearch = async function () {
-    try {
-        const res = await axios('https://api.punkapi.com/v2/beers/1');
-        // this.result = res.data.id;
-        console.log(res.data);
-    }
 
-    catch (error) {
-        console.log(error);
-    }
-}
+app.appendChild(logo);
+app.appendChild(h1);
+app.appendChild(container);
+app.appendChild(search);
+search.appendChild(searchField);
+search.appendChild(searchBtn);
+searchBtn.appendChild(searchBtnImg);
 
-doSearch();
+
+
+fetch('https://api.punkapi.com/v2/beers?food=sushi')
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err => {
+        console.log(err);
+    })

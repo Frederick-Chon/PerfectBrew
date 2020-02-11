@@ -92,7 +92,5 @@
       "git add"
     ]
   },
-  "dependencies": {
-    "axios": "^0.19.2"
-  }
+  "dependencies": {}
 }

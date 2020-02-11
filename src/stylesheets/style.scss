@@ -7,25 +7,18 @@
 
 html {
   height: 100%;
+  background: #F6F6F6;
 }
 
 body {
-  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   min-height: 100%;
+  margin: 0;
 }
 
-a {
+.search {
+  width: 100%;
   position: relative;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-
-  img {
-    display: inline-block;
-    vertical-align: middle;
-    width: 80px;
-  }
+  display: flex;
 }
