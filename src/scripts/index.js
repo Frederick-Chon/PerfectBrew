@@ -6,6 +6,7 @@ const app = document.getElementById('root');
 
 const logo = document.createElement('img');
 logo.src = '/src/images/beer.svg';
+logo.setAttribute('class', 'logo')
 
 const h1 = document.createElement('h1');
 h1.textContent = `Perfect Brew`;
@@ -37,6 +38,7 @@ search.appendChild(searchField);
 search.appendChild(searchBtn);
 searchBtn.appendChild(searchBtnImg);
 
+// Event listeners for both button click & enter key
 searchBtn.addEventListener('click', () => getResults(searchField.value.toString()));
 searchField.addEventListener('keypress', function(e) {
     if (e.keyCode == 13) {
@@ -53,29 +55,46 @@ async function getResults(input) {
     try {
         let result = await fetch(`https://api.punkapi.com/v2/beers?food=${input}`);
         let data = await result.json();
-        // console.log(data);
+        console.log(data);
         // console.log(`status: ${data.status}`)
         container.textContent = ''; // Clear container before next query
-        data.forEach(beer => {
+        data.forEach(beers => {
             // Create div with card class
             const card = document.createElement('div');
             card.setAttribute('class', 'card');
 
-            const h1 = document.createElement('h1');
-            h1.textContent = beer.name;
+            const beerName = document.createElement('h1');
+            beerName.textContent = beers.name;
 
-            const img = document.createElement('img');
-            img.src = `${beer.image_url}`;
+            const beerImg = document.createElement('img');
+            if (beers.image_url === null) {
+                // Fallback for when some results don't have an image
+                beerImg.src = '/src/images/not-avail-logo.svg';
+                beerImg.alt = 'No photo available icon';
+            } else {
+                beerImg.src = `${beers.image_url}`;
+                beerImg.alt = `Picture of ${beers.name}`
+            }
+            
+            const beerDescription = document.createElement('p');
+            beerDescription.textContent = beers.description;
 
-            const p = document.createElement('p');
-            p.textContent = beer.description;
+            const beerABV = document.createElement('p');
+            beerABV.textContent = `ABV: ${beers.abv}`
+
+            const beerIBU = document.createElement('p');
+            beerIBU.textContent = `IBU: ${beers.ibu}`;
+
+            const beerBrewerMsg = document.createElement('p');
+            beerBrewerMsg.textContent = `Tips from the brewer: ${beers.brewers_tips}`;
 
             container.appendChild(card);
-            card.appendChild(h1);
-            card.appendChild(img);
-            card.appendChild(p);
-
-            
+            card.appendChild(beerName);
+            card.appendChild(beerImg);
+            card.appendChild(beerDescription);
+            card.appendChild(beerABV);
+            card.appendChild(beerIBU);
+            card.appendChild(beerBrewerMsg);
         })
     } catch(err) {
         console.log(err);
