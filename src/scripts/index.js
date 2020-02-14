@@ -5,11 +5,11 @@ import '../stylesheets/style.scss';
 const app = document.getElementById('root');
 
 const logo = document.createElement('img');
-logo.src = '/src/images/beer.svg';
+logo.src = '/src/images/logo.png';
 logo.setAttribute('class', 'logo')
 
 const h1 = document.createElement('h1');
-h1.textContent = `Perfect Brew`;
+h1.textContent = `Find your beer by searching for your favorite food below`;
 
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
@@ -71,6 +71,7 @@ async function getResults(input) {
                 // Fallback for when some results don't have an image
                 beerImg.src = '/src/images/not-avail-logo.svg';
                 beerImg.alt = 'No photo available icon';
+                beerImg.setAttribute('class', 'no-image-logo')
             } else {
                 beerImg.src = `${beers.image_url}`;
                 beerImg.alt = `Picture of ${beers.name}`
@@ -80,10 +81,15 @@ async function getResults(input) {
             beerDescription.textContent = beers.description;
 
             const beerABV = document.createElement('p');
-            beerABV.textContent = `ABV: ${beers.abv}`
+            beerABV.innerHTML = `
+                <span>ABV</span>: ${beers.abv}
+            `;
 
             const beerIBU = document.createElement('p');
-            beerIBU.textContent = `IBU: ${beers.ibu}`;
+            // beerIBU.textContent = `IBU: ${beers.ibu}`;
+            beerIBU.innerHTML = `
+                <span>IBU</span>: ${beers.ibu}
+            `;
 
             const beerBrewerMsg = document.createElement('p');
             beerBrewerMsg.textContent = `Tips from the brewer: ${beers.brewers_tips}`;
