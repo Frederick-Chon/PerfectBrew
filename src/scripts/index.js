@@ -18,25 +18,24 @@ app.appendChild(logo);
 app.appendChild(h1);
 
 const search = document.createElement('div');
-search.setAttribute('class', 'search')
+search.setAttribute('class', 'search');
 
 const searchField = document.createElement('input');
 searchField.setAttribute('class', 'searchField');
 searchField.setAttribute('type', 'text');
-searchField.setAttribute('placeholder', 'Find your perfect food and beer pairing!');
+searchField.setAttribute('placeholder', 'Search..');
 
 const searchBtn = document.createElement('button');
 searchBtn.setAttribute('class', 'searchBtn');
 searchBtn.setAttribute('type', 'submit');
 
-const searchBtnImg = document.createElement('img');
-searchBtnImg.setAttribute('class', 'searchBtnImg')
-searchBtnImg.src = '/src/images/search.svg';
+const searchIcon = document.createElement('i');
+searchIcon.setAttribute('class', 'fa fa-search');
 
 app.appendChild(search);
 search.appendChild(searchField);
 search.appendChild(searchBtn);
-searchBtn.appendChild(searchBtnImg);
+searchBtn.appendChild(searchIcon);
 
 // Event listeners for both button click & enter key
 searchBtn.addEventListener('click', () => getResults(searchField.value.toString()));
@@ -65,6 +64,7 @@ async function getResults(input) {
 
             const beerName = document.createElement('h1');
             beerName.textContent = beers.name;
+            beerName.setAttribute('class', 'beer-name');
 
             const beerImg = document.createElement('img');
             if (beers.image_url === null) {
@@ -75,6 +75,7 @@ async function getResults(input) {
             } else {
                 beerImg.src = `${beers.image_url}`;
                 beerImg.alt = `Picture of ${beers.name}`
+                beerImg.setAttribute('class', 'beer-image');
             }
             
             const beerDescription = document.createElement('p');
