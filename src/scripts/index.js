@@ -1,5 +1,3 @@
-// import { qs, qsa, $on, $delegate } from './utils';
-
 import '../stylesheets/style.scss';
 
 const app = document.getElementById('root');
@@ -9,7 +7,7 @@ logo.src = '/src/images/logo.png';
 logo.setAttribute('class', 'logo')
 
 const h1 = document.createElement('h1');
-h1.textContent = `Find your beer by searching for your favorite food below`;
+h1.textContent = `Search for your favorite foods below to find the perfect brew!`;
 
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
@@ -38,10 +36,10 @@ search.appendChild(searchBtn);
 searchBtn.appendChild(searchIcon);
 
 // Event listeners for both button click & enter key
-searchBtn.addEventListener('click', () => getResults(searchField.value.toString()));
+searchBtn.addEventListener('click', () => getResults(searchField.value.toString().split(' ').join('_')));
 searchField.addEventListener('keypress', function(e) {
     if (e.keyCode == 13) {
-        let searchItem = searchField.value.toString();
+        let searchItem = searchField.value.toString().split(' ').join('_');
         getResults(searchItem);
         console.log(`searchInput is ${searchItem}`);
     }
@@ -55,7 +53,7 @@ async function getResults(input) {
         let result = await fetch(`https://api.punkapi.com/v2/beers?food=${input}`);
         let data = await result.json();
         console.log(data);
-        // console.log(`status: ${data.status}`)
+        
         container.textContent = ''; // Clear container before next query
         data.forEach(beers => {
             // Create div with card class
@@ -83,40 +81,38 @@ async function getResults(input) {
 
             const beerABV = document.createElement('p');
             beerABV.innerHTML = `
-                <span>ABV</span>: ${beers.abv}
+                <span>ABV(Alcohol by Volume)</span>: ${beers.abv}%
             `;
 
             const beerIBU = document.createElement('p');
-            // beerIBU.textContent = `IBU: ${beers.ibu}`;
             beerIBU.innerHTML = `
-                <span>IBU</span>: ${beers.ibu}
+                <span>IBU(International Bitterness Units</span>: ${beers.ibu}
             `;
 
-            const beerBrewerMsg = document.createElement('p');
-            beerBrewerMsg.textContent = `Tips from the brewer: ${beers.brewers_tips}`;
+            const beerTagline = document.createElement('p');
+            beerTagline.setAttribute('class', 'tagline');
+            beerTagline.textContent = `"${beers.tagline}"`;
 
             container.appendChild(card);
             card.appendChild(beerName);
             card.appendChild(beerImg);
+            card.appendChild(beerTagline);
             card.appendChild(beerDescription);
             card.appendChild(beerABV);
             card.appendChild(beerIBU);
-            card.appendChild(beerBrewerMsg);
-        })
+        });
+
+        // Fallback for invalid searches that don't have any results
+        if (data.length == 0) {
+            container.textContent = '';
+
+            const invalid = document.createElement('p');
+            invalid.setAttribute('class', 'invalid');
+            invalid.textContent = `Your search of '${input.split('_').join(' ')}' didn't have any matching results, please try again :)`;
+            container.appendChild(invalid);        
+        }
+
     } catch(err) {
         console.log(err);
     }
 }
-
-
-
-// fetch('https://api.punkapi.com/v2/beers?food=sushi')
-//     .then(res => {
-//         return res.json();
-//     })
-//     .then(data => {
-//         console.log(data);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })

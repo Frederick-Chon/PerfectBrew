@@ -4,7 +4,6 @@
 @import './fonts';
 
 // custom styles
-
 #root {
   max-width: 1200px;
   margin: 0 auto;
@@ -25,8 +24,9 @@ h1 {
 }
 
 .search {
-  width: 100%;
+  width: 70%;
   position: relative;
+  margin: 0 auto;
   display: flex;
 
   .searchField {
@@ -37,7 +37,7 @@ h1 {
     height: 36px;
     border-radius: 5px 0 0 5px;
     outline: none;
-    color: #9DBFAF;
+    color: rgb(0, 0, 0);
 
     &:focus {
       color: black;
@@ -58,13 +58,13 @@ h1 {
 }
 
 p {
-  padding: 0 2.5rem 2.5rem;
-  margin: 0;
+  padding: 0 1.5rem 1.5rem;
+  margin: 0 auto;
 }
 
 span {
-  font-size: x-large;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .container {
@@ -88,19 +88,23 @@ span {
   .beer-name {
     text-align: center;
     padding: 1.5rem 2.5rem;
-    // background-image: linear-gradient(120deg, #ef32d9 0%, #89fffd 100%);
-    // background-image: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
-    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
-    
+    background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
     margin: 0 0 2rem 0;
     font-size: 1.5rem;
     color: white;
   }
 
+  .tagline {
+    font-style: italic;
+    text-align: center;
+    font-weight: 700;
+  }
+
   .beer-image {
     display: block;
     margin: 1rem auto;
-    max-width: 40%;
+    max-width: 30%;
+    margin-bottom: 2rem;
   }
 
   .no-image-logo {
@@ -110,16 +114,22 @@ span {
   }
 
   &:nth-child(2n) .beer-name {
-    background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);
+    background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
   }
 
   &:nth-child(4n) .beer-name {
-    background-image: linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%);
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
 
   &:nth-child(5n) .beer-name {
-    background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
   }
+}
+
+.invalid {
+  margin: 0 auto;
+  padding-top: 3rem;
+  font-weight: bold;
 }
 
 
