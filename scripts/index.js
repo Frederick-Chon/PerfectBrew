@@ -3,7 +3,7 @@ import '../stylesheets/style.scss';
 const app = document.getElementById('root');
 
 const logo = document.createElement('img');
-logo.src = '/src/images/logo.png';
+logo.src = './src/images/logo.png';
 logo.setAttribute('class', 'logo')
 
 const h1 = document.createElement('h1');
@@ -67,7 +67,7 @@ async function getResults(input) {
             const beerImg = document.createElement('img');
             if (beers.image_url === null) {
                 // Fallback for when some results don't have an image
-                beerImg.src = '/src/images/not-avail-logo.svg';
+                beerImg.src = './src/images/not-avail-logo.svg';
                 beerImg.alt = 'No photo available icon';
                 beerImg.setAttribute('class', 'no-image-logo')
             } else {
