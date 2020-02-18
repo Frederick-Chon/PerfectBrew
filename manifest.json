@@ -1,7 +1,8 @@
 {
-  "app.css": "stylesheets/app.ab8302e7.css",
-  "app.css.map": "stylesheets/app.ab8302e7.css.map",
-  "app.js": "scripts/app.ab8302e7.js",
-  "app.js.map": "scripts/app.ab8302e7.js.map",
-  "fonts/Roboto-Light.woff": "fonts/Roboto-Light.f0fc91f2.woff"
+  "app.css": "stylesheets/app.1e041918.css",
+  "app.css.map": "stylesheets/app.1e041918.css.map",
+  "app.js": "scripts/app.1e041918.js",
+  "app.js.map": "scripts/app.1e041918.js.map",
+  "fonts/Roboto-Light.woff": "fonts/Roboto-Light.f0fc91f2.woff",
+  "images/not-avail-logo.svg": "images/not-avail-logo.1f384aec.svg"
 }
