@@ -41,7 +41,6 @@ searchField.addEventListener('keypress', function(e) {
     if (e.keyCode == 13) {
         let searchItem = searchField.value.toString().split(' ').join('_');
         getResults(searchItem);
-        console.log(`searchInput is ${searchItem}`);
     }
 });
 
@@ -52,9 +51,9 @@ async function getResults(input) {
     try {
         let result = await fetch(`https://api.punkapi.com/v2/beers?food=${input}`);
         let data = await result.json();
-        console.log(data);
         
-        container.textContent = ''; // Clear container before next query
+        // Clear container before next query
+        container.textContent = '';
         data.forEach(beers => {
             // Create div with card class
             const card = document.createElement('div');
