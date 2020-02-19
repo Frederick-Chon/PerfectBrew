@@ -1,9 +1,11 @@
 import '../stylesheets/style.scss';
+const appLogo = 'https://raw.githubusercontent.com/Frederick-Chon/PerfectBrew/master/static/logo.png';
+const notAvail = '';
 
 const app = document.getElementById('root');
 
 const logo = document.createElement('img');
-// logo.src = '/static/logo.png';
+logo.src = appLogo;
 logo.setAttribute('class', 'logo');
 
 const h1 = document.createElement('h1');
@@ -66,8 +68,8 @@ async function getResults(input) {
             const beerImg = document.createElement('img');
             if (beers.image_url === null) {
                 // Fallback for when some results don't have an image
-                beerImg.src = '/static/not-avail-logo.svg';
-                beerImg.alt = 'No photo available icon';
+                beerImg.src = '';
+                beerImg.alt = 'No image available icon';
                 beerImg.setAttribute('class', 'no-image-logo')
             } else {
                 beerImg.src = `${beers.image_url}`;
