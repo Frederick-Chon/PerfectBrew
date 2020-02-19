@@ -3,8 +3,8 @@ import '../stylesheets/style.scss';
 const app = document.getElementById('root');
 
 const logo = document.createElement('img');
-logo.src = '/src/images/logo.png';
-logo.setAttribute('class', 'logo')
+// logo.src = '/static/logo.png';
+logo.setAttribute('class', 'logo');
 
 const h1 = document.createElement('h1');
 h1.textContent = `Search for your favorite foods below to find the perfect brew!`;
@@ -41,7 +41,6 @@ searchField.addEventListener('keypress', function(e) {
     if (e.keyCode == 13) {
         let searchItem = searchField.value.toString().split(' ').join('_');
         getResults(searchItem);
-        console.log(`searchInput is ${searchItem}`);
     }
 });
 
@@ -52,9 +51,9 @@ async function getResults(input) {
     try {
         let result = await fetch(`https://api.punkapi.com/v2/beers?food=${input}`);
         let data = await result.json();
-        console.log(data);
         
-        container.textContent = ''; // Clear container before next query
+        // Clear container before next query
+        container.textContent = '';
         data.forEach(beers => {
             // Create div with card class
             const card = document.createElement('div');
@@ -67,7 +66,7 @@ async function getResults(input) {
             const beerImg = document.createElement('img');
             if (beers.image_url === null) {
                 // Fallback for when some results don't have an image
-                beerImg.src = '/src/images/not-avail-logo.svg';
+                beerImg.src = '/static/not-avail-logo.svg';
                 beerImg.alt = 'No photo available icon';
                 beerImg.setAttribute('class', 'no-image-logo')
             } else {
@@ -91,7 +90,7 @@ async function getResults(input) {
 
             const beerTagline = document.createElement('p');
             beerTagline.setAttribute('class', 'tagline');
-            beerTagline.textContent = `"${beers.tagline}"`;
+            beerTagline.textContent = `${beers.tagline}`;
 
             container.appendChild(card);
             card.appendChild(beerName);
