@@ -1,6 +1,6 @@
 import '../stylesheets/style.scss';
 const appLogo = 'https://raw.githubusercontent.com/Frederick-Chon/PerfectBrew/master/static/logo.png';
-const notAvail = '';
+const notAvail = 'https://github.com/Frederick-Chon/PerfectBrew/blob/master/src/images/no-image.png?raw=true';
 
 const app = document.getElementById('root');
 
@@ -68,7 +68,7 @@ async function getResults(input) {
             const beerImg = document.createElement('img');
             if (beers.image_url === null) {
                 // Fallback for when some results don't have an image
-                beerImg.src = '';
+                beerImg.src = notAvail;
                 beerImg.alt = 'No image available icon';
                 beerImg.setAttribute('class', 'no-image-logo')
             } else {
